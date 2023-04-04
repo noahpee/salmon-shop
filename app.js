@@ -1,4 +1,4 @@
-let locations = ["Seattle", "Tokyo", "Dubai", "Paris", "Lima"]
+let locations = ["Seattle", "Tokyo", "Dubai", "Paris", "Lima", 'shreena']
 let minCust = [23, 3, 11, 20, 2]
 let maxCust = [65,24,38,38,16]
 let avrSal = [6.3,1.2,3.7,2.3,4.6]
