@@ -30,7 +30,7 @@ li {
 }
 
 .fishInfo {
-    width: 880px;
+    width: 950px;
     height: 400px;
     background-color: salmon;
     overflow: scroll;
@@ -42,9 +42,9 @@ li {
 
 table {
     margin-top: 10px;
-    border-spacing: 3px;
+    border-spacing: 6px;
     text-align: center;
-    line-height: 150%;
+    line-height: 200%;
 }
 
 h1{

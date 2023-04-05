@@ -174,7 +174,7 @@ function createTable() {
         if (z == 5) {
             nexText = '<tr>'
 
-            let tiText = `<td>Total</td>
+            let tiText = `<td>Customer</td>
             `
     
             nexText += tiText
@@ -202,7 +202,7 @@ function createTable() {
 
             if (z == 5) {
 
-            let timeText = `<td>-</td>`
+            let timeText = `<td>totals</td>`
 
             nexText += timeText
     
@@ -227,7 +227,7 @@ function createTable() {
 
                 let ranNum = Math.floor(Math.random() * (maxCust[z] - minCust[z])) + minCust[z]
 
-                let percentChange = Math.round((ranNum/percentTimes[k -1])*100)
+                let percentChange = Math.round((ranNum/100)*percentTimes[k -1])
     
                 let timeText = `<td>${percentChange}</td>`
     
@@ -252,7 +252,7 @@ function createTable() {
     
             } else {
 
-            let timeText = `<th>${totals[z]}</th>`
+            let timeText = `<th>${Math.round(totals[z]*avrSal[z])}</th>`
 
             nexText += timeText
 
