@@ -283,7 +283,7 @@ function showTD() {
 
     textP.style.visibility = 'visible'
 
-    textP.innerText = `an average of ${event.target.innerText} customers in ${locations[myArray[0]]} will buy ${Math.round(avrSal[myArray[0]]*event.target.innerText)} salmon snacks.
+    textP.innerText = `an average of ${event.target.innerText} customers in ${locations[myArray[0]]} will buy ${Math.round(avrSal[myArray[0]]*event.target.innerText)} salmon snacks (${myArray[1]}% of peak)
     this will require ${Math.round(Math.ceil(avrSal[myArray[0]]*event.target.innerText)/20)} tossers`
 
 }
