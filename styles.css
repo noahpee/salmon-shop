@@ -21,6 +21,7 @@ li {
 }
 
 .selectDiv {
+    visibility: hidden;
     display: flex;
     justify-content: space-evenly;
     width: 70%;
@@ -43,9 +44,10 @@ table {
     margin-top: 10px;
     border-spacing: 3px;
     text-align: center;
+    line-height: 150%;
 }
 
-h2{
+h1{
     text-align: center;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;

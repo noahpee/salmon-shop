@@ -6,6 +6,8 @@ let maxCust = [65,24,38,38,16]
 
 let avrSal = [6.3,1.2,3.7,2.3,4.6]
 
+let visi = true
+
 function change() {
 
     openingHours()
@@ -63,8 +65,20 @@ function openingHours() {
 
     let selector = document.getElementById("selectDiv");
 
+    if (visi == true ) {
+
+        selector.style.visibility = 'visible'
+
+        visi = false
+    } else {
+
+        selector.style.visibility = 'hidden'
+        visi = true
+
+    }
+
     selectorHtml = `
-        <label for="times">data for which hour?</label>
+        <label for="times">Data for which hour?</label>
         <select name="times" id="openTimes" onchange="createData()">`
 
         for (k = 6; k <= 20; k ++) {
