@@ -14,6 +14,29 @@ function change() {
 
     openingHours()
 
+    var id = null;
+
+    /*
+    var elem = document.getElementById("fishImg");
+    var postop = 0;
+    let popDeg = 0
+    clearInterval(id);
+    id = setInterval(frame, 8);
+    function frame() {
+    if (postop == 1050) {
+        clearInterval(id);
+    } else if (popDeg == -90) {
+        postop++;
+        elem.style.top = postop + 'px';
+    } else {
+        postop++;
+        popDeg--;
+        elem.style.top = postop + 'px';
+        elem.style.rotate = popDeg + 'deg';
+    }
+    }
+    */
+
 }
 
 function createData() {

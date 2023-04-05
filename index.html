@@ -12,17 +12,19 @@
     <title>Salmon Shop</title>
 </head>
 <body>
-    <div class="popUp">
+    <div class="popUp" onclick="change()">
         <p>click me</p>
     </div>
     <div class="fishDiv">
-        <img src="assets/salmon.png" onclick="change()" alt="">
+        <img src="assets/salmon.png" class="fish-image" onclick="change()" id="fishImg" alt="">
     </div>
     <div id="selectDiv" class="selectDiv"></div>
     <div id="fishInfo" class="fishInfo">
     <div id="fishTable"></div>
     <p class="tile-data" id="tileData">tile data</p>
     </div>
-    <h1>the 'orrible fish shop</h1>
+    <footer>
+        <h1>the 'orrible fish shop</h1>
+    </footer>
 </body>
 </html>
