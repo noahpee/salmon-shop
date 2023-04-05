@@ -5,6 +5,14 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
+ul{
+    font-weight: 700;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
 .fishDiv {
     display: flex;
     justify-content: center;
@@ -17,10 +25,11 @@ body{
     justify-content: space-evenly;
     width: 70%;
     margin: 1% auto;
+    height: 25px;
 }
 
 .fishInfo {
-    width: 800px;
+    width: 880px;
     height: 400px;
     background-color: salmon;
     overflow: scroll;
@@ -28,6 +37,12 @@ body{
     display: flex;
     justify-content: center;
     border-radius: 10px;
+}
+
+table {
+    margin-top: 10px;
+    border-spacing: 3px;
+    text-align: center;
 }
 
 h2{

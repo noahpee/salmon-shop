@@ -1,7 +1,16 @@
-let locations = ["Seattle", "Tokyo", "Dubai", "Paris", "Lima", 'shreena']
+let locations = ["Seattle", "Tokyo", "Dubai", "Paris", "Lima"]
+
 let minCust = [23, 3, 11, 20, 2]
+
 let maxCust = [65,24,38,38,16]
+
 let avrSal = [6.3,1.2,3.7,2.3,4.6]
+
+function change() {
+
+    openingHours()
+
+}
 
 function createData() {
 
@@ -9,7 +18,7 @@ function createData() {
 
     let fishTable = document.getElementById("fishTable");
 
-    shit = ''
+    newText = ''
 
     if (timings == 'all') {
 
@@ -33,25 +42,22 @@ function createData() {
         let sales = avg * newObject.averageSale
 
         let newShit = `
-        <h1>Location: ${newObject.location}</h1>
-        <p>Min Customers: ${newObject.minCustomers}</p>
-        <p>Max Customers:  ${newObject.maxCustomers}</p>
-        <p>Average Sales:  ${newObject.averageSale}</p>
-        <p>in ${newObject.location} at ${timings} hour, an average of ${avg} customers will buy an average of ${sales} salmon snacks</p>
+        <ul>Location: ${newObject.location}</ul>
+        <li>Min Customers: ${newObject.minCustomers}</li>
+        <li>Max Customers:  ${newObject.maxCustomers}</li>
+        <li>Average Sales:  ${newObject.averageSale}</li>
+        <li>in ${newObject.location} at ${timings} o'clock, an average of ${avg} customers will buy an average of ${sales} salmon snacks.</li>
     `
-    shit += newShit
+    newText += newShit
 
     }
 
-    fishTable.innerHTML = shit
+    newText += `<br>`
 
+    fishTable.innerHTML = newText
 }
 
-function change() {
 
-    openingHours()
-
-}
 
 function openingHours() {
 
@@ -79,7 +85,6 @@ function openingHours() {
                 selectorHtml += text
     
             }
-
     }
 
     selectorHtml += `
@@ -91,31 +96,37 @@ function openingHours() {
 
 function createTable() {
 
+    let totals = [0,0,0,0,0]
+
     let createFish = document.getElementById("fishTable");
 
     let nexText = ''
 
-    let tableHtml = `
-    <table>
-        <tr>
-        <th>Location</th>
-        <th>6:00</th>
-        <th>7:00</th>
-        <th>8:00</th>
-        <th>9:00</th>
-        <th>10:00</th>
-        <th>11:00</th>
-        <th>12:00</th>
-        <th>1:00</th>
-        <th>2:00</th>
-        <th>3:00</th>
-        <th>4:00</th>
-        <th>5:00</th>
-        <th>6:00</th>
-        <th>7:00</th>
-        <th>8:00</th>
-        <th>Total</th>
-    </tr>`
+    let tableHtml = `<table>
+                        <tr>`
+
+    for (j = 5; j <= 21; j ++) {
+
+        if (j == 5) {
+
+            let exText = 
+            `<th>Location</th>
+            <th>Average</th>
+            `
+
+            tableHtml += exText
+
+        } else if (j == 21) {
+            let exText = `<th>Total</th>
+                            </tr>`
+            tableHtml += exText
+
+        } else {
+            let exText = `<th>${j}:00</th>
+            `
+            tableHtml += exText
+        }
+    }
 
     for (z = 0; z < locations.length; z ++) {
 
@@ -126,11 +137,32 @@ function createTable() {
 
         nexText += tiText
 
-    for (k = 0; k <= 14; k ++) {
+    for (k = 0; k <= 16; k ++) {
 
-        let timeText = `<td>${Math.floor((Math.random() * 70) + 6)}</td>`
+        if (k == 0) {
 
-        nexText += timeText
+            let timeText = `<td>${avrSal[z]}</td>`
+
+            nexText += timeText
+
+
+        } else if (k == 16) {
+
+            let timeText = `<th>${totals[z]}</th>`
+
+            nexText += timeText
+
+        } else {
+
+            let ranNum = Math.floor(Math.random() * (maxCust[z] - minCust[z])) + minCust[z]
+
+            let timeText = `<td>${ranNum}</td>`
+
+            totals[z] += ranNum
+
+            nexText += timeText
+    
+        }
 
     }
 
