@@ -70,6 +70,7 @@ function openingHours() {
         selector.style.visibility = 'visible'
 
         visi = false
+
     } else {
 
         selector.style.visibility = 'hidden'
@@ -111,6 +112,7 @@ function openingHours() {
 function createTable() {
 
     let totals = [0,0,0,0,0]
+    let dailys = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
     let createFish = document.getElementById("fishTable");
 
@@ -142,39 +144,91 @@ function createTable() {
         }
     }
 
-    for (z = 0; z < locations.length; z ++) {
+    for (z = 0; z < locations.length + 1; z ++) {
 
-        nexText = '<tr>'
+        if (z== 5) {
 
-        let tiText = `<td>${locations[z]}</td>
-        `
+            nexText = '<tr>'
 
-        nexText += tiText
+            let tiText = `<td>Daily</td>
+            `
+    
+            nexText += tiText
+
+        } else {
+
+            nexText = '<tr>'
+
+            let tiText = `<th>${locations[z]}</th>
+            `
+    
+            nexText += tiText
+            
+        }
+
 
     for (k = 0; k <= 16; k ++) {
 
+
         if (k == 0) {
+
+            if (z== 5) { 
+
+                let timeText = `<td>Totals</td>`
+
+                nexText += timeText
+    
+            }
+
+            else {
 
             let timeText = `<td>${avrSal[z]}</td>`
 
             nexText += timeText
 
+        }
+
 
         } else if (k == 16) {
+
+            if (z== 5) { 
+
+                let sum = totals.reduce(function(a, b){
+                    return a + b;
+                });
+
+                let timeText = `<th>${sum}</th>`
+
+                nexText += timeText
+    
+            } else {
 
             let timeText = `<th>${totals[z]}</th>`
 
             nexText += timeText
 
+        }
+
         } else {
+
+            if (z== 5) { 
+
+                let timeText = `<td>${dailys[k]}</td>`
+
+                nexText += timeText
+    
+            } else {
 
             let ranNum = Math.floor(Math.random() * (maxCust[z] - minCust[z])) + minCust[z]
 
             let timeText = `<td>${ranNum}</td>`
 
             totals[z] += ranNum
+            dailys[k] += ranNum
 
             nexText += timeText
+
+            }
     
         }
 
@@ -186,6 +240,7 @@ function createTable() {
     
     createFish.innerHTML = tableHtml
 
+    console.log(dailys)
     }
     
 }
