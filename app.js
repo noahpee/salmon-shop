@@ -70,7 +70,7 @@ function openingHours() {
         selector.style.visibility = 'visible'
 
         visi = false
-
+        
     } else {
 
         selector.style.visibility = 'hidden'
@@ -159,7 +159,7 @@ function createTable() {
 
             nexText = '<tr>'
 
-            let tiText = `<th>${locations[z]}</th>
+            let tiText = `<td>${locations[z]}</td>
             `
     
             nexText += tiText
