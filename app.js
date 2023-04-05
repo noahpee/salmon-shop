@@ -6,13 +6,40 @@ let maxCust = [65,24,38,38,16]
 
 let avrSal = [6.3,1.2,3.7,2.3,4.6]
 
+let percentTimes = [50, 75, 100, 60, 80, 100, 70, 40, 60, 90, 70, 50, 30, 40, 60]
+
 let visi = true
 
 function change() {
 
-    openingHours()
+        let seattle = new SalmonShop(locations[0], minCust[0], maxCust[0], avrSal[0])
+        let toyko = new SalmonShop(locations[1], minCust[1], maxCust[1], avrSal[1])
+        let dubai = new SalmonShop(locations[2], minCust[2], maxCust[2], avrSal[2])
+        let paris = new SalmonShop(locations[3], minCust[3], maxCust[3], avrSal[3])
+        let lima = new SalmonShop(locations[4], minCust[4], maxCust[4], avrSal[4])
+
+        openingHours()
 
 }
+
+function SalmonShop(location, minCustomers, maxCustomers, saleAverage) {
+
+    this.location = location
+    this.minCustomers = minCustomers
+    this.maxCustomers = maxCustomers
+    this.saleAverage = saleAverage
+    this.averageCustomers = Math.floor(Math.random() * maxCustomers) + minCustomers;
+  }
+  
+  SalmonShop.prototype.generateAge = function () {
+
+  };
+
+
+
+
+
+
 
 function createData() {
 
@@ -59,8 +86,6 @@ function createData() {
     fishTable.innerHTML = newText
 }
 
-
-
 function openingHours() {
 
     let selector = document.getElementById("selectDiv");
@@ -105,12 +130,12 @@ function openingHours() {
     </select>`
 
     selector.innerHTML = selectorHtml
-
 }
 
 function createTable() {
 
-    let totals = [0,0,0,0,0]
+    let totals = []
+    let dailys = []
 
     let createFish = document.getElementById("fishTable");
 
@@ -142,39 +167,96 @@ function createTable() {
         }
     }
 
-    for (z = 0; z < locations.length; z ++) {
+    for (z = 0; z <= locations.length; z ++) {
 
-        nexText = '<tr>'
+        totals.push(0)
 
-        let tiText = `<td>${locations[z]}</td>
-        `
+        if (z == 5) {
+            nexText = '<tr>'
 
-        nexText += tiText
+            let tiText = `<td>Total</td>
+            `
+    
+            nexText += tiText
+                
+        } else {
+
+
+            nexText = '<tr>'
+
+            let tiText = `<td>${locations[z]}</td>
+            `
+    
+            nexText += tiText
+
+
+        }
 
     for (k = 0; k <= 16; k ++) {
 
+        if (z == 0) {
+            dailys.push(0)
+        }
+
         if (k == 0) {
+
+            if (z == 5) {
+
+            let timeText = `<td>-</td>`
+
+            nexText += timeText
+    
+            } else {
 
             let timeText = `<td>${avrSal[z]}</td>`
 
             nexText += timeText
 
+            }
 
-        } else if (k == 16) {
+
+        } else if (k < 16) {
+
+            if (z == 5) {
+
+                let timeText = `<td>${dailys[k]}</td>`
+
+                nexText += timeText
+            
+            } else {
+
+                let ranNum = Math.floor(Math.random() * (maxCust[z] - minCust[z])) + minCust[z]
+
+                let percentChange = Math.round((ranNum/percentTimes[k -1])*100)
+    
+                let timeText = `<td>${percentChange}</td>`
+    
+                totals[z] += percentChange
+                dailys[k] += percentChange
+    
+                nexText += timeText
+                
+            }
+
+        } else {
+
+            if (z == 5) {
+
+                const sum = totals.reduce((accumulator, value) => {
+                    return accumulator + value;
+                  }, 0);
+
+                let timeText = `<th>${sum}</th>`
+
+                nexText += timeText
+    
+            } else {
 
             let timeText = `<th>${totals[z]}</th>`
 
             nexText += timeText
 
-        } else {
-
-            let ranNum = Math.floor(Math.random() * (maxCust[z] - minCust[z])) + minCust[z]
-
-            let timeText = `<td>${ranNum}</td>`
-
-            totals[z] += ranNum
-
-            nexText += timeText
+            }
     
         }
 
