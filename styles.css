@@ -30,21 +30,37 @@ li {
 }
 
 .fishInfo {
-    width: 880px;
-    height: 400px;
+    width: 930px;
+    height: 375px;
     background-color: salmon;
     overflow: scroll;
     margin: 1% auto;
     display: flex;
-    justify-content: center;
     border-radius: 10px;
+    flex-direction: column;
+    padding: 20px;
 }
 
 table {
-    margin-top: 10px;
-    border-spacing: 3px;
+    cursor: pointer;
+    border-spacing: 5px;
     text-align: center;
-    line-height: 150%;
+    line-height: 200%;
+    margin: 0 auto;
+}
+
+td:hover {
+    color: white;
+}
+
+th:hover {
+    color: white;
+}
+
+.tile-data{
+    visibility: hidden;
+    font-size: 1.4rem;
+    text-align: center;
 }
 
 h1{
