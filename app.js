@@ -326,3 +326,14 @@ function showTot() {
     textP.innerText = `the total number of customers at ${timr}:00 would be ${event.target.innerText}`
 
 }
+
+function title() {
+
+    console.log('p')
+
+}
+
+function titleHide() {
+
+    
+}
