@@ -10,7 +10,9 @@ let perce = [50, 75, 100, 60, 80, 100, 70, 40, 60, 90, 70, 50, 30, 40, 60]
 
 let visi = true
 
-let tabes = []
+let locNum = 0
+
+let raes = []
 
 function NewStore(name, maxiCustomers, miniCustomers, averageSale) {
 
@@ -22,9 +24,33 @@ function NewStore(name, maxiCustomers, miniCustomers, averageSale) {
 
 }
 
-function fromHeader(thing) {
+function hedr() {
 
-    console.log(thing)
+    let createFish = document.getElementById("onTable");
+
+    for (e = 0; e <= perce.length +1; e ++) {
+
+        if (e == 0) {
+
+            let tableHeadEe = document.createElement("th");
+            tableHeadEe.innerText = 'Location'
+            createFish.appendChild(tableHeadEe);
+        } else  if  (e == perce.length +1){
+
+            let tableHeadEe = document.createElement("th");
+            tableHeadEe.innerText = 'Total'
+            createFish.appendChild(tableHeadEe);
+
+        } else {
+            let tableHeadEe = document.createElement("th");
+            tableHeadEe.innerText = `${e + 5}:00`
+            createFish.appendChild(tableHeadEe);
+        }
+    }
+
+}
+
+function fromHeader(thing) {
 
     let createFish = document.getElementById("onTable");
     let tableHeadEle = document.createElement("tr");
@@ -41,16 +67,114 @@ function fromHeader(thing) {
                 return a + b;
             });
             tableRowEle.innerText = sum
+            tableRowEle.id = `${c}-${locNum}`
+            tableRowEle.onmouseover = function(event) {
+    
+                let textP = document.getElementById('tileData')
+
+                let nums = event.target.id
+
+                const myArray = nums.split("-");
+
+                textP.style.visibility = 'visible'
+            
+                textP.innerText = `A total of ${event.target.innerText} customers in ${locations[myArray[1]]} will buy an average of ${Math.round(event.target.innerText*avrSal[myArray[1]])} salmon snacks.`
+            }
             tableHeadEle.appendChild(tableRowEle);
-            tabes.push(ttp)
-            console.log(tabes)
+            
         } else {
         let tableRowEle = document.createElement("td");
         tableHeadEle.appendChild(tableRowEle);
         let ranNum = Math.floor(Math.random() * (this.maxiCustomers -  this.miniCustomers)) +  this.miniCustomers
         let perceP = Math.round((ranNum/100)*perce[c])
         tableRowEle.innerText = perceP
+        tableRowEle.id = `${c}-${locNum}`
+        tableRowEle.onmouseover = function(event) {
+
+            let textP = document.getElementById('tileData')
+
+            let nums = event.target.id
+
+            const myArray = nums.split("-");
+        
+            textP.style.visibility = 'visible'
+        
+            let timr = parseInt(myArray[0]) + 6
+        
+            let maths = Math.round(avrSal[myArray[1]]*event.target.innerText)
+        
+            textP.innerText = `An average of ${event.target.innerText} customers in ${locations[myArray[1]]} at ${timr}:00 will buy ${maths} salmon snacks (${perce[myArray[0]]}% of peak).
+            This will require ${(Math.trunc(maths/20)) + 1} tossers.`
+        };
+        tableRowEle.onmouseout = function(event) {
+        let textP = document.getElementById('tileData')
+
+        textP.style.visibility = 'hidden'
+    
+        textP.innerText = ''
+        }
         ttp.push(perceP)
+        raes[c][locNum] += perceP
+        }
+    }
+
+    locNum += 1
+
+}
+
+function tots() {
+
+    let createFish = document.getElementById("onTable");
+
+    let newww = []
+
+    for (e = 0; e <= perce.length +1; e ++) {
+
+        if (e == 0) {
+
+            let tableHeadEe = document.createElement("td");
+            tableHeadEe.innerText = 'Totals'
+            createFish.appendChild(tableHeadEe);
+        } else  if  (e == perce.length +1){
+
+            let sumsw = newww.reduce(function(a, b){
+                return a + b;
+            });
+
+            let tableHeadEe = document.createElement("td");
+            tableHeadEe.innerText = sumsw
+            createFish.appendChild(tableHeadEe);
+
+        } else {
+            let tableHeadEe = document.createElement("td");
+            let sum = raes[e -1].reduce(function(a, b){
+                return a + b;
+            });
+
+            tableHeadEe.innerText = `${sum}`
+            tableHeadEe.id = `${e}-${locNum}`
+            tableHeadEe.onmouseover = function(event) {
+                let textP = document.getElementById('tileData')
+
+                let nums = event.target.id
+                        
+                const myArray = nums.split("-");
+            
+                textP.style.visibility = 'visible'
+            
+                let timr = parseInt(myArray[0]) + 5
+            
+                textP.innerText = `The total number of customers at ${timr}:00 would be ${event.target.innerText}.`            
+            }
+            tableHeadEe.onmouseout = function(event) {
+                let textP = document.getElementById('tileData')
+        
+                textP.style.visibility = 'hidden'
+            
+                textP.innerText = ''
+                }
+            newww.push(sum)
+            createFish.appendChild(tableHeadEe);
         }
     }
 
@@ -58,6 +182,14 @@ function fromHeader(thing) {
 
 function neew() {
 
+    for (w = 0; w < perce.length; w ++) {
+        raes.push([])
+
+    for (u= 0; u < locations.length; u ++) {
+            raes[w].push(0)
+        }
+    }
+    
     for (q = 0; q < locations.length; q ++) {
         NewStore(locations[q], maxCust[q], minCust[q], avrSal[q])
     }
@@ -98,11 +230,25 @@ function createData() {
 
     let fishTable = document.getElementById("fishTable");
 
-    document.getElementById('fishInput').style.visibility = 'hidden'
 
     newText = ''
 
+    hedr()
+    neew()
+    locNum = 0
+    tots()
+    locNum = 0
+    document.getElementById("fishInput").style.visibility = 'visible'
+    return
+
     if (timings == 'all') {
+
+        hedr()
+        neew()
+        locNum = 0
+        tots()
+        locNum = 0
+        return
 
         createTable()
         document.getElementById('fishInput').style.visibility = 'visible'
@@ -402,6 +548,13 @@ function smd() {
         return alert('values cannot be empty')
 
        }
+
+    }
+
+    if (values[1].value < values[2].value) {
+
+        return alert('Max Customers cannot be lower than Min Customers')
+
     }
 
     let string = document.getElementById('inpName').value
@@ -414,11 +567,14 @@ function smd() {
     maxCust.push(parseFloat(document.getElementById('inpMax').value))
     minCust.push(parseFloat(document.getElementById('inpMin').value))
     avrSal.push(parseFloat(document.getElementById('inpSale').value))
-    createTable()
     let pet = document.getElementById('fishInfo')
     pet.scrollTop = pet.scrollHeight
     document.getElementById('inpName').value = ''
     document.getElementById('inpMax').value = ''
     document.getElementById('inpMin').value = ''
     document.getElementById('inpSale').value = ''
+    let createFish = document.getElementById("onTable");
+    createFish.innerHTML = ``
+    raes = []
+    createData()
 }
