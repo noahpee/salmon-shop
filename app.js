@@ -103,7 +103,7 @@ function createData() {
     newText = ''
 
     if (timings == 'all') {
-        
+
         createTable()
         document.getElementById('fishInput').style.visibility = 'visible'
     return
@@ -241,8 +241,6 @@ function createTable() {
             nexText += tiText
 
         } else {
-
-            NewStore(locations[z], maxCust[z], minCust[z], avrSal[z])
 
             nexText = '<tr>'
 
