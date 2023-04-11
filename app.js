@@ -173,7 +173,7 @@ function createTable() {
 
         totals.push(0)
 
-        if (z== 5) {
+        if (z== locations.length) {
 
             nexText = '<tr>'
 
@@ -202,7 +202,7 @@ function createTable() {
 
         if (k == 0) {
 
-            if (z== 5) { 
+            if (z == locations.length) { 
 
                 let timeText = `<td>Totals</td>`
 
@@ -221,7 +221,7 @@ function createTable() {
 
         } else if (k == 16) {
 
-            if (z== 5) { 
+            if (z== locations.length) { 
 
                 let sum = totals.reduce(function(a, b){
                     return a + b;
@@ -241,7 +241,7 @@ function createTable() {
 
         } else {
 
-            if (z== 5) { 
+            if (z== locations.length) { 
 
                 let timeText = `<td onmouseover="showTot()" onmouseout="hide()" id="${z}-${k}">${dailys[k]}</td>`
 
@@ -327,13 +327,17 @@ function showTot() {
 
 }
 
-function title() {
+function topName() {
 
     console.log('p')
 
 }
 
-function titleHide() {
-
-    
+function smd() {
+    event.preventDefault()
+    locations.push(document.getElementById('inpName').value)
+    maxCust.push(document.getElementById('inpMax').value)
+    minCust.push(document.getElementById('inpMin').value)
+    avrSal.push(document.getElementById('inpSale').value)
+    createTable()
 }

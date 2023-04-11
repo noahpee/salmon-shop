@@ -20,20 +20,26 @@
     </div>
     <div id="selectDiv" class="selectDiv"></div>
     <div id="fishInfo" class="fishInfo">
-    <div id="fishTable">
-        <div class="fish-wrapper">
-            <div>
-                <img class="lookShit" onclick="title()" src="assets/fish.jpg" alt="">
-            </div>
-            <div>
-                <img class="lookShit" src="assets/family.jpg" alt="">
-            </div>
-            <div>
-                <img class="lookShit" src="assets/shirt.jpg" alt="">
-            </div>
+        <div class="fish-text">
+            <p class="tile-data" id="tileData">tile data</p>
+            </div>    
+        <div id="fishTable"></div>
+        <div class="fishInput">
+            <form onsubmit="smd()" id="newForm">
+                <legend>add new location</legend>
+                <fieldset>
+                    <label for="inpName">shop name</label>
+                    <input type="text" name="inpName" id="inpName">
+                    <label for="inpName">max cust</label>
+                    <input type="text" name="inpMax" id="inpMax">
+                    <label for="inpName">min cust</label>
+                    <input type="text" name="inpMin" id="inpMin">
+                    <label for="inpName">average sale</label>
+                    <input type="text" name="inpSale" id="inpSale">
+                    <button id="submit" onclick="smd()">submit</button>
+                </fieldset>
+            </form>
         </div>
-    </div>
-    <p class="tile-data" id="tileData">tile data</p>
     </div>
     <footer>
         <h1>the 'orrible fish shop</h1>
