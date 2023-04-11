@@ -253,8 +253,6 @@ function createTable() {
 
             let ranNum = Math.floor(Math.random() * (maxCust[z] - minCust[z])) + minCust[z]
 
-            console.log(ranNum, k,z)
-
             let perceP = Math.round((ranNum/100)*perce[k -1])
 
             let timeText = `<td onmouseover="showTD()" onmouseout="hide()" id="${z}-${perce[k-1]}">${perceP}</td>`
