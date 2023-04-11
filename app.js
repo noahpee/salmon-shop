@@ -10,6 +10,36 @@ let perce = [50, 75, 100, 60, 80, 100, 70, 40, 60, 90, 70, 50, 30, 40, 60]
 
 let visi = true
 
+function NewStore(name, maxiCustomers, miniCustomers, averageSale) {
+
+    this.name = name
+    this.maxiCustomers = maxiCustomers
+    this.miniCustomers = miniCustomers
+    this.averageSale = averageSale
+
+}
+
+function fromHeader() {
+
+    const tableRow = document.createElement("tr");
+    let tableDataElement = document.createElement("td");
+    tableDataElement.textContent = this.locationName;
+    tableRow.appendChild(tableDataElement);
+    for (let i = 0; i < hours.length; i++) {
+      tableDataElement = document.createElement("td");
+      tableDataElement.textContent = this.cookiesEachHour[i];
+      tableRow.appendChild(tableDataElement);
+    }
+    const tableHeader = document.createElement("th");
+    tableHeader.textContent = this.totalDailySales;
+    tableRow.appendChild(tableHeader);
+    tableElement.appendChild(tableRow);
+  
+
+}
+
+
+
 function change() {
 
     openingHours()
@@ -20,9 +50,9 @@ function change() {
     var postop = 0;
     let popDeg = 0
     clearInterval(id);
-    id = setInterval(frame, 8);
+    id = setInterval(frame, 5);
     function frame() {
-    if (postop == 1050) {
+    if (postop == 1250) {
         clearInterval(id);
     } else if (popDeg == -90) {
         postop++;
@@ -283,7 +313,7 @@ function show() {
 
     textP.style.visibility = 'visible'
 
-    textP.innerText = 'the total number of salmon snacks brought in ' + locations[event.target.id] + ' was ' + event.target.innerText
+    textP.innerText = 'The total number of salmon snacks brought in ' + locations[event.target.id] + ' was ' + event.target.innerText + '.'
 
 }
 
@@ -309,7 +339,7 @@ function showTD() {
 
     let maths = Math.round(avrSal[myArray[0]]*event.target.innerText)
 
-    textP.innerText = `An average of ${event.target.innerText} customers in ${locations[myArray[0]]} will buy ${maths} salmon snacks (${myArray[1]}% of peak)
+    textP.innerText = `An average of ${event.target.innerText} customers in ${locations[myArray[0]]} will buy ${maths} salmon snacks (${myArray[1]}% of peak).
     This will require ${(Math.trunc(maths/20)) + 1} tossers.`
 
 }
@@ -326,7 +356,7 @@ function showTot() {
 
     let timr = parseInt(myArray[1]) + 5
 
-    textP.innerText = `the total number of customers at ${timr}:00 would be ${event.target.innerText}`
+    textP.innerText = `The total number of customers at ${timr}:00 would be ${event.target.innerText}.`
 
 }
 
