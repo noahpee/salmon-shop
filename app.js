@@ -10,34 +10,58 @@ let perce = [50, 75, 100, 60, 80, 100, 70, 40, 60, 90, 70, 50, 30, 40, 60]
 
 let visi = true
 
+let tabes = []
+
 function NewStore(name, maxiCustomers, miniCustomers, averageSale) {
 
     this.name = name
     this.maxiCustomers = maxiCustomers
     this.miniCustomers = miniCustomers
     this.averageSale = averageSale
+    fromHeader(this)
 
 }
 
-function fromHeader() {
+function fromHeader(thing) {
 
-    const tableRow = document.createElement("tr");
-    let tableDataElement = document.createElement("td");
-    tableDataElement.textContent = this.locationName;
-    tableRow.appendChild(tableDataElement);
-    for (let i = 0; i < hours.length; i++) {
-      tableDataElement = document.createElement("td");
-      tableDataElement.textContent = this.cookiesEachHour[i];
-      tableRow.appendChild(tableDataElement);
+    console.log(thing)
+
+    let createFish = document.getElementById("onTable");
+    let tableHeadEle = document.createElement("tr");
+    createFish.appendChild(tableHeadEle);
+    tableHeadEle.innerText = this.name
+
+    let ttp = []
+
+    for (c = 0; c <= perce.length; c ++) {
+
+        if (c == perce.length) {
+            let tableRowEle = document.createElement("td");
+            let sum = ttp.reduce(function(a, b){
+                return a + b;
+            });
+            tableRowEle.innerText = sum
+            tableHeadEle.appendChild(tableRowEle);
+            tabes.push(ttp)
+            console.log(tabes)
+        } else {
+        let tableRowEle = document.createElement("td");
+        tableHeadEle.appendChild(tableRowEle);
+        let ranNum = Math.floor(Math.random() * (this.maxiCustomers -  this.miniCustomers)) +  this.miniCustomers
+        let perceP = Math.round((ranNum/100)*perce[c])
+        tableRowEle.innerText = perceP
+        ttp.push(perceP)
+        }
     }
-    const tableHeader = document.createElement("th");
-    tableHeader.textContent = this.totalDailySales;
-    tableRow.appendChild(tableHeader);
-    tableElement.appendChild(tableRow);
-  
 
 }
 
+function neew() {
+
+    for (q = 0; q < locations.length; q ++) {
+        NewStore(locations[q], maxCust[q], minCust[q], avrSal[q])
+    }
+}
 
 
 function change() {
@@ -79,7 +103,7 @@ function createData() {
     newText = ''
 
     if (timings == 'all') {
-
+        
         createTable()
         document.getElementById('fishInput').style.visibility = 'visible'
     return
@@ -116,6 +140,8 @@ function createData() {
 
 
 function openingHours() {
+
+    
 
     let selector = document.getElementById("selectDiv");
 
@@ -204,6 +230,7 @@ function createTable() {
 
         totals.push(0)
 
+
         if (z== locations.length) {
 
             nexText = '<tr>'
@@ -214,6 +241,8 @@ function createTable() {
             nexText += tiText
 
         } else {
+
+            NewStore(locations[z], maxCust[z], minCust[z], avrSal[z])
 
             nexText = '<tr>'
 
@@ -337,8 +366,6 @@ function showTD() {
 
     textP.style.visibility = 'visible'
 
-    console.log(myArray)
-
     let timr = parseInt(myArray[2]) + 5
 
     let maths = Math.round(avrSal[myArray[0]]*event.target.innerText)
@@ -374,15 +401,26 @@ function smd() {
 
        if (values[i].value == 0) {
 
-        return
+        return alert('values cannot be empty')
 
        }
     }
 
-    
-    locations.push(document.getElementById('inpName').value)
+    let string = document.getElementById('inpName').value
+    let firstLetter = string.charAt(0)
+    let firstLetterCap = firstLetter.toUpperCase()
+    let remainingLetters = string.slice(1)
+    let capitalizedWord = firstLetterCap + remainingLetters
+
+    locations.push(capitalizedWord)
     maxCust.push(parseFloat(document.getElementById('inpMax').value))
     minCust.push(parseFloat(document.getElementById('inpMin').value))
     avrSal.push(parseFloat(document.getElementById('inpSale').value))
     createTable()
+    let pet = document.getElementById('fishInfo')
+    pet.scrollTop = pet.scrollHeight
+    document.getElementById('inpName').value = ''
+    document.getElementById('inpMax').value = ''
+    document.getElementById('inpMin').value = ''
+    document.getElementById('inpSale').value = ''
 }

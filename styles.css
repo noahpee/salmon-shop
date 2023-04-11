@@ -64,7 +64,7 @@ li {
 
 .fishInfo {
     width: 930px;
-    height: 425px;
+    height: 400px;
     background-color: salmon;
     overflow: scroll;
     margin: 1% auto;
@@ -95,11 +95,13 @@ table {
     border-spacing: 5px;
     text-align: center;
     line-height: 200%;
-    margin: 0 auto;
+    margin: 15px auto;
 }
 
 fieldset{
     border: none;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 td:hover {
@@ -129,6 +131,7 @@ th:hover {
     margin: 0 auto;
     display: flex;
     visibility: hidden;
+    justify-content: space-between;
 }
 
 form{
@@ -138,6 +141,20 @@ form{
 
 input{
     width: 12.5%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+button {
+    border-style: none;
+    border-radius: 5px;
+    background-color: rgb(251, 174, 165);
+    color: white;
+    width: 60px;
 }
 
 
