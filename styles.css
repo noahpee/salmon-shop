@@ -110,10 +110,12 @@ th:hover {
 }
 
 .tile-data{
-    visibility: hidden;
+    visibility: visible;
     font-size: 1.4rem;
     text-align: center;
-    margin: 0 auto;
+    margin: 150px auto;
+    position: absolute;
+
 }
 
 .fish-text {

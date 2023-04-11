@@ -16,7 +16,6 @@ function change() {
 
     var id = null;
 
-    /*
     var elem = document.getElementById("fishImg");
     var postop = 0;
     let popDeg = 0
@@ -35,7 +34,7 @@ function change() {
         elem.style.rotate = popDeg + 'deg';
     }
     }
-    */
+    
 
 }
 
@@ -310,8 +309,8 @@ function showTD() {
 
     let maths = Math.round(avrSal[myArray[0]]*event.target.innerText)
 
-    textP.innerText = `an average of ${event.target.innerText} customers in ${locations[myArray[0]]} will buy ${maths} salmon snacks (${myArray[1]}% of peak)
-    this will require ${(Math.trunc(maths/20)) + 1} tossers`
+    textP.innerText = `An average of ${event.target.innerText} customers in ${locations[myArray[0]]} will buy ${maths} salmon snacks (${myArray[1]}% of peak)
+    This will require ${(Math.trunc(maths/20)) + 1} tossers.`
 
 }
 
