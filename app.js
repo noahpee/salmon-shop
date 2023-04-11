@@ -284,7 +284,7 @@ function createTable() {
 
             let perceP = Math.round((ranNum/100)*perce[k -1])
 
-            let timeText = `<td onmouseover="showTD()" onmouseout="hide()" id="${z}-${perce[k-1]}">${perceP}</td>`
+            let timeText = `<td onmouseover="showTD()" onmouseout="hide()" id="${z}-${perce[k-1]}-${k}">${perceP}</td>`
 
             totals[z] += perceP
             dailys[k] += perceP
@@ -337,9 +337,13 @@ function showTD() {
 
     textP.style.visibility = 'visible'
 
+    console.log(myArray)
+
+    let timr = parseInt(myArray[2]) + 5
+
     let maths = Math.round(avrSal[myArray[0]]*event.target.innerText)
 
-    textP.innerText = `An average of ${event.target.innerText} customers in ${locations[myArray[0]]} will buy ${maths} salmon snacks (${myArray[1]}% of peak).
+    textP.innerText = `An average of ${event.target.innerText} customers in ${locations[myArray[0]]} at ${timr}:00 will buy ${maths} salmon snacks (${myArray[1]}% of peak).
     This will require ${(Math.trunc(maths/20)) + 1} tossers.`
 
 }
