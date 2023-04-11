@@ -116,9 +116,9 @@ th:hover {
     visibility: visible;
     font-size: 1.4rem;
     text-align: center;
-    margin: 150px auto;
+    margin: 125px auto;
     position: absolute;
-
+    background-color: white;
 }
 
 .fish-text {

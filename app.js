@@ -10,6 +10,8 @@ let perce = [50, 75, 100, 60, 80, 100, 70, 40, 60, 90, 70, 50, 30, 40, 60]
 
 let visi = true
 
+let fishing = true
+
 let locNum = 0
 
 let raes = []
@@ -114,7 +116,7 @@ function fromHeader(thing) {
         textP.innerText = ''
         }
         ttp.push(perceP)
-        raes[c][locNum] += perceP
+        raes[c][locNum] += Math.round(perceP*avrSal[locNum])
         }
     }
 
@@ -164,7 +166,7 @@ function tots() {
             
                 let timr = parseInt(myArray[0]) + 5
             
-                textP.innerText = `The total number of customers at ${timr}:00 would be ${event.target.innerText}.`            
+                textP.innerText = `The total number of customers at ${timr}:00 would buy an average of ${event.target.innerText} salmon snacks that hour.`            
             }
             tableHeadEe.onmouseout = function(event) {
                 let textP = document.getElementById('tileData')
@@ -198,8 +200,18 @@ function neew() {
 
 function change() {
 
-    openingHours()
+    if (fishing == true ) {
 
+        fishing = false
+
+        openingHours()
+
+        return
+
+    } else {
+
+        fishing = true
+        
     var id = null;
 
     var elem = document.getElementById("fishImg");
@@ -221,73 +233,23 @@ function change() {
     }
     }
     
-
+    }
 }
 
 function createData() {
-
-    let timings = document.getElementById("openTimes").value;
-
-    let fishTable = document.getElementById("fishTable");
-
-
-    newText = ''
-
-    hedr()
-    neew()
-    locNum = 0
-    tots()
-    locNum = 0
-    document.getElementById("fishInput").style.visibility = 'visible'
-    return
-
-    if (timings == 'all') {
 
         hedr()
         neew()
         locNum = 0
         tots()
         locNum = 0
-        return
+        document.getElementById("fishInput").style.visibility = 'visible'
 
-        createTable()
-        document.getElementById('fishInput').style.visibility = 'visible'
-    return
-
-    }
-
-    for (i = 0; i < locations.length; i ++) {
-
-        let newObject = {
-            location : locations[i],
-            minCustomers : Math.floor(Math.random() * 26) + 5,
-            maxCustomers : Math.floor((Math.random() * 40) + 26),
-            averageSale : Math.floor(Math.random() * 10) + 1,
-        }
-
-        let avg = (newObject.minCustomers + newObject.maxCustomers)/2
-
-        let sales = avg * newObject.averageSale
-
-        let newShit = `
-        <ul>Location: ${newObject.location}</ul>
-        <li>Min Customers: ${newObject.minCustomers}</li>
-        <li>Max Customers:  ${newObject.maxCustomers}</li>
-        <li>Average Sales:  ${newObject.averageSale}</li>
-        <li>in ${newObject.location} at ${timings} o'clock, an average of ${avg} customers will buy an average of ${sales} salmon snacks.</li>
-    `
-    newText += newShit
-
-    }
-
-    fishTable.innerHTML = newText
 }
 
 
 
 function openingHours() {
-
-    
 
     let selector = document.getElementById("selectDiv");
 
@@ -297,8 +259,7 @@ function openingHours() {
 
         visi = false
 
-        
-        
+    
     } else {
 
         selector.style.visibility = 'hidden'
@@ -337,148 +298,7 @@ function openingHours() {
 
 }
 
-function createTable() {
 
-    let totals = []
-    let dailys = []
-
-    let createFish = document.getElementById("fishTable");
-
-    let nexText = ''
-
-    let tableHtml = `<table>
-                        <tr>`
-
-    for (j = 5; j <= 21; j ++) {
-
-        if (j == 5) {
-
-            let exText = 
-            `<th>Location</th>
-            <th>Average</th>
-            `
-
-            tableHtml += exText
-
-        } else if (j == 21) {
-            let exText = `<th>Total</th>
-                            </tr>`
-            tableHtml += exText
-
-        } else {
-            let exText = `<th>${j}:00</th>
-            `
-            tableHtml += exText
-        }
-    }
-
-    for (z = 0; z < locations.length + 1; z ++) {
-
-        totals.push(0)
-
-
-        if (z== locations.length) {
-
-            nexText = '<tr>'
-
-            let tiText = `<td>Daily</td>
-            `
-    
-            nexText += tiText
-
-        } else {
-
-            nexText = '<tr>'
-
-            let tiText = `<td>${locations[z]}</td>
-            `
-    
-            nexText += tiText
-            
-        }
-
-
-    for (k = 0; k <= 16; k ++) {
-
-        if (z == 0) {
-            dailys.push(0)
-        }
-
-        if (k == 0) {
-
-            if (z == locations.length) { 
-
-                let timeText = `<td>Totals</td>`
-
-                nexText += timeText
-    
-            }
-
-            else {
-
-            let timeText = `<td>${avrSal[z]}</td>`
-
-            nexText += timeText
-
-        }
-
-
-        } else if (k == 16) {
-
-            if (z== locations.length) { 
-
-                let sum = totals.reduce(function(a, b){
-                    return a + b;
-                });
-
-                let timeText = `<th>${sum}</th>`
-
-                nexText += timeText
-    
-            } else {
-
-            let timeText = `<th onmouseover="show()" onmouseout="hide()" id="${z}">${Math.round(totals[z]*avrSal[z])}</th>`
-
-            nexText += timeText
-
-        }
-
-        } else {
-
-            if (z== locations.length) { 
-
-                let timeText = `<td onmouseover="showTot()" onmouseout="hide()" id="${z}-${k}">${dailys[k]}</td>`
-
-                nexText += timeText
-    
-            } else {
-
-            let ranNum = Math.floor(Math.random() * (maxCust[z] - minCust[z])) + minCust[z]
-
-            let perceP = Math.round((ranNum/100)*perce[k -1])
-
-            let timeText = `<td onmouseover="showTD()" onmouseout="hide()" id="${z}-${perce[k-1]}-${k}">${perceP}</td>`
-
-            totals[z] += perceP
-            dailys[k] += perceP
-
-            nexText += timeText
-
-            }
-    
-        }
-
-    }
-
-    nexText += `</tr>`
-
-    tableHtml += nexText
-    
-    createFish.innerHTML = tableHtml
-
-    }
-    
-}
 
 function show() {
     
