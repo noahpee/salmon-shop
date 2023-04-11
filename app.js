@@ -45,12 +45,14 @@ function createData() {
 
     let fishTable = document.getElementById("fishTable");
 
+    document.getElementById('fishInput').style.visibility = 'hidden'
+
     newText = ''
 
     if (timings == 'all') {
 
         createTable()
-
+        document.getElementById('fishInput').style.visibility = 'visible'
     return
 
     }
@@ -251,12 +253,14 @@ function createTable() {
 
             let ranNum = Math.floor(Math.random() * (maxCust[z] - minCust[z])) + minCust[z]
 
+            console.log(ranNum, k,z)
+
             let perceP = Math.round((ranNum/100)*perce[k -1])
 
             let timeText = `<td onmouseover="showTD()" onmouseout="hide()" id="${z}-${perce[k-1]}">${perceP}</td>`
 
-            totals[z] += ranNum
-            dailys[k] += ranNum
+            totals[z] += perceP
+            dailys[k] += perceP
 
             nexText += timeText
 
@@ -327,17 +331,25 @@ function showTot() {
 
 }
 
-function topName() {
-
-    console.log('p')
-
-}
-
 function smd() {
+
     event.preventDefault()
+
+    var values = document.getElementsByClassName("popper");
+
+    for (var i = 0; i < values.length; i++) {
+
+       if (values[i].value == 0) {
+
+        return
+
+       }
+    }
+
+    
     locations.push(document.getElementById('inpName').value)
-    maxCust.push(document.getElementById('inpMax').value)
-    minCust.push(document.getElementById('inpMin').value)
-    avrSal.push(document.getElementById('inpSale').value)
+    maxCust.push(parseFloat(document.getElementById('inpMax').value))
+    minCust.push(parseFloat(document.getElementById('inpMin').value))
+    avrSal.push(parseFloat(document.getElementById('inpSale').value))
     createTable()
 }
